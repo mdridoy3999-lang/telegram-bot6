@@ -16,8 +16,11 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ])
 
     direction = random.choice([
-        "📈 UP",
-        "📉 DOWN"
+        if rsi < 30:
+    signal = "📈 UP"
+
+    elif rsi > 70:
+    signal = "📉 DOWN"
     ])
 
     msg = f"""
