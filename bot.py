@@ -12,9 +12,40 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     rsi = random.randint(10, 90)
 
     pair = random.choice([
-        "BTC/USD",
-        "EUR/USD",
-        "GBP/USD"
+        pairs = [
+
+    # OTC PAIRS
+    "EUR/USD OTC",
+    "GBP/USD OTC",
+    "USD/JPY OTC",
+    "USD/CAD OTC",
+    "AUD/USD OTC",
+    "NZD/USD OTC",
+
+    "EUR/JPY OTC",
+    "GBP/JPY OTC",
+    "AUD/JPY OTC",
+    "CAD/JPY OTC",
+
+    "EUR/GBP OTC",
+    "EUR/CAD OTC",
+    "EUR/AUD OTC",
+
+    "GBP/CAD OTC",
+    "GBP/AUD OTC",
+
+    "AUD/CAD OTC",
+    "AUD/NZD OTC",
+
+    "NZD/CAD OTC",
+    "NZD/JPY OTC",
+
+    "USD/CHF OTC",
+    "EUR/CHF OTC",
+    "GBP/CHF OTC",
+
+    "CHF/JPY OTC"
+]
     ])
 
     if rsi < 30:
