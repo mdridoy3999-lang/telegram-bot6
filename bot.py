@@ -10,32 +10,34 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     pair = random.choice([
-        "BTC/USD",
-        "EUR/USD",
-        "GBP/USD"
-    ])
+    "BTC/USD",
+    "EUR/USD",
+    "GBP/USD"
+])
 
+# RSI অনুযায়ী signal
+if rsi < 30:
+    direction = "📈 UP"
+
+elif rsi > 70:
+    direction = "📉 DOWN"
+
+else:
     direction = random.choice([
-        if rsi < 30:
-    signal = "📈 UP"
-
-    elif rsi > 70:
-    signal = "📉 DOWN"
+        "📈 UP",
+        "📉 DOWN"
     ])
 
-    msg = f"""
+msg = f"""
 🔥 SIGNAL
 
 {pair} 2M
 {direction}
 """
 
-    await update.message.reply_text(msg)
+await update.message.reply_text(msg)
 
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("signal", signal))
-
-print("Bot Running...")
-app.run_polling()
