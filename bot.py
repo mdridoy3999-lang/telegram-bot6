@@ -1,18 +1,15 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import (
+    ApplicationBuilder,
+    CommandHandler,
+    ContextTypes,
+)
+
 import random
 
 TOKEN = "8907472855:AAEfLZdmfBMEbxE8Vv2jN1bGUOZgPt8Uf5k"
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Bot Running ✅")
-
-async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
-    rsi = random.randint(10, 90)
-
-    pair = random.choice([
-        pairs = [
+pairs = [
 
     # OTC PAIRS
     "EUR/USD OTC",
@@ -46,33 +43,39 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     "CHF/JPY OTC"
 ]
-    ])
 
-    if rsi < 30:
-        direction = "📈 UP"
+directions = [
+    "⬆️ UP",
+    "⬇️ DOWN"
+]
 
-    elif rsi > 70:
-        direction = "📉 DOWN"
+# START COMMAND
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "🤖 OTC SIGNAL BOT ONLINE 🔥"
+    )
 
-    else:
-        direction = random.choice([
-            "📈 UP",
-            "📉 DOWN"
-        ])
+# SIGNAL COMMAND
+async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    pair = random.choice(pairs)
+    direction = random.choice(directions)
 
     msg = f"""
-🔥 SIGNAL
+🔥 OTC SIGNAL
 
-{pair} 15s
+{pair} 1M
 {direction}
 """
 
     await update.message.reply_text(msg)
 
+# MAIN BOT
 app = ApplicationBuilder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("signal", signal))
 
 print("Bot Running...")
+
 app.run_polling()
