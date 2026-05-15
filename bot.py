@@ -32,7 +32,7 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = f"""
 🔥 SIGNAL
 
-{pair} 2M
+{pair} 15s
 {direction}
 """
 
